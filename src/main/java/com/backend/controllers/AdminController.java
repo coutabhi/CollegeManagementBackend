@@ -4,6 +4,8 @@ import com.backend.models.Admin;
 import com.backend.repositories.AdminRepository;
 import com.backend.services.AdminService;
 
+import java.util.List;
+
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,11 @@ public class AdminController {
 	public AdminController(AdminService adminService, AdminRepository adminRepository) {
 		this.adminService = adminService;
 		this.adminRepository = adminRepository;
+	}
+	
+	@GetMapping("viewall")
+	public List<Admin> getLogin() {
+		return adminService.getAllAdmins();
 	}
 
 	@PostMapping("/view")
@@ -55,6 +62,16 @@ public class AdminController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 					.body("Failed to create admin: " + e.getMessage());
 		}
+	}
+	
+	@PostMapping("delete")
+	public void deleteL(@RequestBody Admin id) {
+		adminService.deleteAdmin(id);
+	}
+	
+	@PostMapping("update")
+	public void updateL(@RequestBody Admin ll) {
+		adminService.updateAdmin(ll);
 	}
 
 }

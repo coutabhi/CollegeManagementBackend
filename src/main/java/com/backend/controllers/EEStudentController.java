@@ -64,19 +64,4 @@ public class EEStudentController {
 		return (ResponseEntity<?>) ResponseEntity.internalServerError();
 	}
 
-	//@PostMapping("insert")
-	//@CrossOrigin(origins="http://localhost:4200")
-	//public void save(@RequestBody StudentModel ll)throws Exception {
-	//	String tempEmailId=ll.getEmailid();
-	//	if(tempEmailId != null && !"".equals(tempEmailId)) {
-	//		StudentModel llobj=l.fetchUserByEmail(tempEmailId);
-	//		if(llobj !=null) {
-	//			throw new Exception("user with"+tempEmailId+"already exist");
-	//		}
-	//	}
-	//	
-	//	l.saveUser(ll);
-	//
-	//}
-
 }

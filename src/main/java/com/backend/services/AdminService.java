@@ -17,7 +17,7 @@ public class AdminService {
 	public AdminService() {
 	}
 
-	public List<Admin> getAllLogin() {
+	public List<Admin> getAllAdmins() {
 		return adminRep.findAll();
 	}
 
@@ -42,15 +42,13 @@ public class AdminService {
 	public void saveAdmin1(Admin ll) {
 		adminRep.save(ll);
 	}
+	
+	public void deleteAdmin(Admin id) {
+		adminRep.delete(id);
+	}
+	
+	public void updateAdmin(Admin ll1) {
+		adminRep.save(ll1);
+	}
 
 }
-
-	//public StudentModel fetchUserByEmail(String email) {
-	//	// TODO Auto-generated method stub
-	//	return ld.findByEmail(email);
-	//}	
-	//
-	//public StudentModel fetchUserByEmailAndPassword(String email,String password) {
-	//	// TODO Auto-generated method stub
-	//	return ld.findByEmailAndPassword(email,password);
-	//}
