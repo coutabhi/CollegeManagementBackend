@@ -7,6 +7,9 @@ import com.backend.repositories.BookAssignmentRepository;
 import com.backend.repositories.BookRepository;
 import com.backend.repositories.StudentRepository;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Setter
+@Getter
 public class BookService {
     @Autowired
     private BookRepository bookRepository;
@@ -53,6 +58,7 @@ public class BookService {
     }
 
     public void deleteBookAssignment(int id) {
+    	System.out.println("In the asssignement repo" + id);
         bookAssignmentRepository.deleteById(id);
     }
     
@@ -62,10 +68,11 @@ public class BookService {
     	System.out.println(studentId);
     	System.out.println("The bookid is ");
     	System.out.println(bookId);
+    	int id = Integer.parseInt(String.valueOf(bookId));
         Student student = studentRepository.findById(studentId).orElse(null);
         System.out.println("student okk");
         System.out.println(student);
-        Book book = bookRepository.findById(bookId).orElse(null);
+        Book book = bookRepository.findById(id).orElse(null);
         System.out.println("book okk");
         System.out.println(book);
         System.out.println("book okk");
