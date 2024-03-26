@@ -17,21 +17,12 @@ public class FeesController {
 	@Autowired
 	FeesService l;
 
-	//GET
-	//@RequestMapping(value="/login",method=RequestMethod.GET)
+	
 	@GetMapping("viewfees")
 	public List<Fees> getLogin() {
 		return l.getAllLogin();
 	}
 
-	//@PostMapping("view")
-	//public Fees getStudent(@RequestBody Fees id) {
-	//	String id1=id.getEmail();
-	//	return l.getStudentById(id1);
-	//}
-
-	//POST
-	//@RequestMapping(value="/save",method=RequestMethod.POST)
 	@PostMapping("addfees")
 	public void saveL(@RequestBody Fees ll) {
 		l.saveStudent(ll);

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+//http://localhost:4200/api/v1/books
 @RestController
 @RequestMapping("/api/v1/books")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -36,6 +36,24 @@ public class BookController {
         Book savedBook = bookService.saveBook(book);
         return new ResponseEntity<>(savedBook, HttpStatus.CREATED);
     }
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable int id, @RequestBody Book bookDetails) {
+        Optional<Book> optionalBook = bookService.getBookById(id);
+        
+        if (optionalBook.isPresent()) {
+            Book existingBook = optionalBook.get();
+            existingBook.setTitle(bookDetails.getTitle());
+            existingBook.setAuthor(bookDetails.getAuthor());
+            // Update other fields as needed
+            
+            Book updatedBook = bookService.saveBook(existingBook);
+            return new ResponseEntity<>(updatedBook, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable int id) {
@@ -66,5 +84,11 @@ public class BookController {
     public ResponseEntity<Void> deleteBookAssignment(@PathVariable int id) {
         bookService.deleteBookAssignment(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+    @PostMapping("/assignments/assign/{studentId}/{bookId}")
+    public ResponseEntity<Void> assignBookToStudent(@PathVariable int studentId, @PathVariable int bookId) {
+        bookService.assignBookToStudent(studentId, bookId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

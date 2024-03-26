@@ -16,7 +16,7 @@ import lombok.Data;
 public class BookAssignment {
     @Id 
     @GeneratedValue(strategy=GenerationType.AUTO)
-    int id;
+    int bid;
 
     @ManyToOne
     @JoinColumn(name = "student_id")
